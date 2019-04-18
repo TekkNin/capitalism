@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "Capitalism Game";
+}
+
+<table class="col-12">
+    <tr>
+        <td><strong>Health:</strong> <span id="playerHealth">0</span></td>
+        <td><strong>Energy:</strong> <span id="playerEnergy">0</span></td>
+        <td><strong>Happiness:</strong> <span id="playerHappiness">0</span></td>
+        <td><strong>Swagger:</strong> <span id="playerSwagger">0</span></td>
+        <td><strong>Money:</strong> $<span id="playerMoney">0</span></td>
+    </tr>
+</table>
+
+<button onclick="work('mines');">Work the Mines</button>
+<button onclick="work('forest');">Gather in the Forest</button>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        var work = function (buildingId) {
+            event.preventDefault();
+
+            $.ajax({
+                url: '/api/work',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    buildingId: buildingId,
+                }),
+                dataType: 'json',
+                success: function (data) {
+                    updateStats();
+                }
+            });
+        };
+
+        var updateStats = function () {
+            $.get("/api/playerstats", function (stats) {
+                $("#playerHealth").html(stats.health);
+                $("#playerEnergy").html(stats.energy);
+                $("#playerHappiness").html(stats.happiness);
+                $("#playerSwagger").html(stats.swagger);
+                $("#playerMoney").html(stats.moneyOnHand);
+            });
+        }
+
+        $(document).ready(function () {
+            updateStats();
+        });
+    </script>
+}
