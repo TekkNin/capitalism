@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[Players] (
     [Id]           NVARCHAR (50) NOT NULL,
     [UserId]       NVARCHAR (50) NOT NULL,
+	[TownId]       NVARCHAR (50) NULL,
     [DisplayName]  NVARCHAR (50) NOT NULL,
     [Health]       INT           NOT NULL,
     [Energy]       INT           NOT NULL,

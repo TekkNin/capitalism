@@ -10,8 +10,9 @@ namespace Capitalism.SharedKernel.Model
             CreatedDate = DateTime.UtcNow;
         }
 
-        protected WritableEntity(DateTime modifiedDate, DateTime createdDate)
+        protected WritableEntity(string id, DateTime modifiedDate, DateTime createdDate)
         {
+            Id = id;
             ModifiedDate = modifiedDate;
             CreatedDate = createdDate;
         }

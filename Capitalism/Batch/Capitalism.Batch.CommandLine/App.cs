@@ -2,11 +2,8 @@
 using Capitalism.Infrastructure;
 using Capitalism.Infrastructure.Repositories;
 using Capitalism.Logic.Repositories;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Capitalism.Batch.CommandLine
 {
@@ -35,7 +32,7 @@ namespace Capitalism.Batch.CommandLine
 
             _logger.LogInformation($"Increase energy process complete at: {DateTime.Now}");
 
-            System.Console.ReadKey();
+            //System.Console.ReadKey();
         }
     }
 }

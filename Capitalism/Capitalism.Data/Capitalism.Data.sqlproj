@@ -59,6 +59,8 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\PostDeployment" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Players.sql" />
@@ -71,8 +73,13 @@
     <Build Include="dbo\Tables\AspNetRoleClaims.sql" />
     <Build Include="dbo\Tables\__EFMigrationsHistory.sql" />
     <Build Include="dbo\Tables\PlayerInventory.sql" />
+    <Build Include="dbo\Tables\Towns.sql" />
+    <Build Include="dbo\Tables\TownBuildings.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Capitalism.Data.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\PostDeployment\SeedTown.PostDeployment1.sql" />
   </ItemGroup>
 </Project>

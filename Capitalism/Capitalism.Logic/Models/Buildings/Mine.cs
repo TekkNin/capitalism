@@ -1,6 +1,7 @@
 ﻿using Capitalism.Logic.Events;
 using Capitalism.Logic.Types;
 using Capitalism.SharedKernel.Events;
+using Capitalism.SharedKernel.Model;
 using System;
 
 namespace Capitalism.Logic.Models.Buildings
@@ -9,11 +10,16 @@ namespace Capitalism.Logic.Models.Buildings
     /// The mine is a goverment controlled building type that allows players to get money, but with a lot of effort. 
     /// This also introduces new currency into the game and drives inflation.
     /// </summary>
-    public class Mine : IWorkable
+    public class Mine : WritableEntity, IMappable, IWorkable
     {
+        public string TownId { get; private set; }
+        public int XCoordinate { get; private set; }
+        public int YCoordinate { get; private set; }
+        public string Name => "Mine";
+
         public int EnergyRequirement => 20;
         public int HappinessEffect => -5;
-        public int Wage => 5;
+        public int Wage => 5;        
 
         public WorkResult Work(Player player)
         {

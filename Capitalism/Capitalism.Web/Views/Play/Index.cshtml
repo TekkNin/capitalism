@@ -3,21 +3,83 @@
     ViewData["Title"] = "Capitalism Game";
 }
 
-<table class="col-12">
-    <tr>
-        <td><strong>Health:</strong> <span id="playerHealth">0</span></td>
-        <td><strong>Energy:</strong> <span id="playerEnergy">0</span></td>
-        <td><strong>Happiness:</strong> <span id="playerHappiness">0</span></td>
-        <td><strong>Swagger:</strong> <span id="playerSwagger">0</span></td>
-        <td><strong>Money:</strong> $<span id="playerMoney">0</span></td>
-    </tr>
-</table>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <strong>Health:</strong>
+            <div class="progress">
+                <div id="playerHealthBar" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <strong>Energy:</strong>
+            <div class="progress">
+                <div id="playerEnergyBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <strong>Happiness:</strong>
+            <div class="progress">
+                <div id="playerHappinessBar" class="progress-bar bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+    </div>
+    <table class="col-12">
+        <tr>
+            <td><strong>Money:</strong> $<span id="playerMoney">0</span></td>
+            <td class="text-right"><strong>Swagger:</strong> <span id="playerSwagger">0</span></td>
+        </tr>
+    </table>
 
-<button onclick="work('mines');">Work the Mines</button>
-<button onclick="work('forest');">Gather in the Forest</button>
+    <div id="map" class="mt-4">
+        <table class="w-100">
+            <tbody>
+                <tr>
+                    <td class="w-20"><button class="btn w-100" onclick="work('mines');"><i class="fa fa-mountain"></i> <span class="d-none d-sm-block">Mines</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-hospital"></i> <span class="d-none d-sm-block">Hospital</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-landmark"></i> <span class="d-none d-sm-block">Town Hall</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-school"></i> <span class="d-none d-sm-block">School</span></button></td>
+                    <td class="w-20"><button class="btn w-100" onclick="work('forest');"><i class="fa fa-tree"></i> <span class="d-none d-sm-block">Forest</span></button></td>
+                </tr>
+                <tr>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-building"></i> <span class="d-none d-sm-block">Super Co.</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-warehouse"></i> <span class="d-none d-sm-block">Johnny Inc.</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-store-alt"></i> <span class="d-none d-sm-block">Shop 1</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-store"></i> <span class="d-none d-sm-block">Shop 2</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-school"></i> <span class="d-none d-sm-block">School</span></button></td>
+                </tr>
+                <tr>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-industry"></i> <span class="d-none d-sm-block">Manufacturing</span></button></td>
+                    <td class="w-20 bg-success"><button class="btn w-100"><i class="fa fa-hotel"></i> <span class="d-none d-sm-block">Apartment</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-money-bill-alt"></i> <span class="d-none d-sm-block">For Sale</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-city"></i> <span class="d-none d-sm-block">Mega Corp</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-university"></i> <span class="d-none d-sm-block">University</span></button></td>
+                </tr>
+                <tr>
+                    <td class="w-20"><button class="btn w-100 btn-secondary"><i class="fa fa-home"></i> <span class="d-none d-sm-block">House</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-campground"></i> <span class="d-none d-sm-block">Shack</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-tractor"></i> <span class="d-none d-sm-block">Farm</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-utensils"></i> <span class="d-none d-sm-block">Restaurant</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-bolt"></i> <span class="d-none d-sm-block">Power Plant</span></button></td>
+                </tr>
+                <tr>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-money-bill-alt"></i> <span class="d-none d-sm-block">For Sale</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-glass-martini-alt"></i> <span class="d-none d-sm-block">Bar</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-money-bill-alt"></i> <span class="d-none d-sm-block">For Sale</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-money-bill-alt"></i> <span class="d-none d-sm-block">For Sale</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-money-bill-alt"></i> <span class="d-none d-sm-block">For Sale</span></button></td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="w-100"><button class="btn w-100"><i class="fa fa-subway"></i> <span class="d-none d-sm-block">Cityville Train Station</span></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
 @section Scripts
-{
+    {
     <script type="text/javascript">
         var work = function (buildingId) {
             event.preventDefault();
@@ -31,6 +93,9 @@
                 }),
                 dataType: 'json',
                 success: function (data) {
+                    if (!data.succeeded) {
+                        alert(data.messages[0]);
+                    }
                     updateStats();
                 }
             });
@@ -38,9 +103,12 @@
 
         var updateStats = function () {
             $.get("/api/playerstats", function (stats) {
-                $("#playerHealth").html(stats.health);
-                $("#playerEnergy").html(stats.energy);
-                $("#playerHappiness").html(stats.happiness);
+                $('#playerHealthBar').html(stats.health + "%");
+                $('#playerHealthBar').attr('aria-valuenow', stats.health).css('width', stats.health + "%");
+                $('#playerEnergyBar').html(stats.energy + "%");
+                $('#playerEnergyBar').attr('aria-valuenow', stats.energy).css('width', stats.energy + "%");
+                $('#playerHappinessBar').html(stats.happiness + "%");
+                $('#playerHappinessBar').attr('aria-valuenow', stats.happiness).css('width', stats.happiness + "%");
                 $("#playerSwagger").html(stats.swagger);
                 $("#playerMoney").html(stats.moneyOnHand);
             });
@@ -49,5 +117,9 @@
         $(document).ready(function () {
             updateStats();
         });
+
+        window.setInterval(function () {
+            updateStats();
+        }, 30000);
     </script>
 }

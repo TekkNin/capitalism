@@ -13,6 +13,11 @@ namespace Capitalism.Logic.Models
         public string UserId { get; private set; }
 
         /// <summary>
+        /// The unique foreign key identifier for which town the player is currently located.
+        /// </summary>
+        public string CurrentTown { get; private set; }
+
+        /// <summary>
         /// The name the player would like displayed to everyone else.
         /// </summary>
         public string DisplayName
@@ -131,9 +136,8 @@ namespace Capitalism.Logic.Models
             Skills skills,
             DateTime modifiedDate,
             DateTime createdDate) :
-            base(modifiedDate, createdDate)
+            base(id, modifiedDate, createdDate)
         {
-            this.Id = id;
             this.UserId = userId;
             this.DisplayName = displayName;
             this.Health = health;

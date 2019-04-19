@@ -1,7 +1,9 @@
 ﻿using Capitalism.Logic.Events;
+using Capitalism.Logic.Events.BuildingEvents;
 using Capitalism.Logic.Models.Items;
 using Capitalism.Logic.Types;
 using Capitalism.SharedKernel.Events;
+using Capitalism.SharedKernel.Model;
 using System;
 
 namespace Capitalism.Logic.Models.Buildings
@@ -10,8 +12,14 @@ namespace Capitalism.Logic.Models.Buildings
     /// The forest is a goverment controlled building type that allows players to get basic construction materials, but with a lot of effort. 
     /// This allows players to start constructing other types of buildings without any skills
     /// </summary>
-    public class Forest : IWorkable
+    public class Forest : WritableEntity, IMappable, IWorkable
     {
+        public string TownId { get; private set; }
+        public int XCoordinate { get; private set; }
+        public int YCoordinate { get; private set; }
+        public string Name => "Forest";
+
+        public int TreesRemaining { get; private set; }
         public int EnergyRequirement => 10;
         public int Wage => 0;
 
@@ -19,6 +27,8 @@ namespace Capitalism.Logic.Models.Buildings
         {
             if (!player.IsAlive)
                 return WorkResult.Failed("You're dead.");
+            if (this.TreesRemaining == 0)
+                return WorkResult.Failed("All the mature trees are gone. Wait for them to grow.");
             if (player.Energy < this.EnergyRequirement)
                 return WorkResult.Failed("You don't have enough energy to work in the forest.");
 
@@ -27,10 +37,12 @@ namespace Capitalism.Logic.Models.Buildings
             player.EarnMoney(this.Wage);
 
             player.Inventory.AddItem(1, new ConstuctionMaterial());
+            this.TreesRemaining--;
 
-            CheckForInjury(player, workResult);
+            CheckForInjury(player, workResult);           
 
-            DomainEvents.Raise<PlayerWorkedEvent>(new PlayerWorkedEvent(player, this));
+            DomainEvents.Raise(new PlayerWorkedEvent(player, this));            
+            DomainEvents.Raise(new ForestWorkedEvent(this));
 
             return workResult;
         }
