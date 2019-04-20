@@ -1,4 +1,4 @@
-﻿using Capitalism.Logic.Models.Buildings;
+﻿using Capitalism.Logic.Models.Interfaces;
 using Capitalism.Logic.Services;
 using Capitalism.SharedKernel;
 using Capitalism.Web.Api.Models;

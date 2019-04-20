@@ -1,4 +1,5 @@
 ﻿using Capitalism.Logic.Events;
+using Capitalism.Logic.Models.Interfaces;
 using Capitalism.Logic.Types;
 using Capitalism.SharedKernel.Events;
 using Capitalism.SharedKernel.Model;
@@ -49,7 +50,7 @@ namespace Capitalism.Logic.Models.Buildings
             return workResult;
         }
 
-        private static void CheckForInjury(Player player, WorkResult workResult)
+        private void CheckForInjury(Player player, WorkResult workResult)
         {
             var injuryRoll = new Random().Next(1, 100);
 

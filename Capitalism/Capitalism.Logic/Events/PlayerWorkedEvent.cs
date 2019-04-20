@@ -1,5 +1,5 @@
 ﻿using Capitalism.Logic.Models;
-using Capitalism.Logic.Models.Buildings;
+using Capitalism.Logic.Models.Interfaces;
 using Capitalism.SharedKernel.Events;
 using System;
 

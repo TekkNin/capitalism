@@ -1,4 +1,5 @@
-﻿using Capitalism.Logic.Types;
+﻿using Capitalism.Logic.Models.Interfaces;
+using Capitalism.Logic.Types;
 using Capitalism.SharedKernel.Model;
 using System;
 

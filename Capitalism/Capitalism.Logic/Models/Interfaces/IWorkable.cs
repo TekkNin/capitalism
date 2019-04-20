@@ -1,6 +1,6 @@
 ﻿using Capitalism.Logic.Types;
 
-namespace Capitalism.Logic.Models.Buildings
+namespace Capitalism.Logic.Models.Interfaces
 {
     public interface IWorkable
     {

@@ -1,5 +1,5 @@
 ﻿using Capitalism.Infrastructure.Repositories;
-using Capitalism.Logic.Models.Buildings;
+using Capitalism.Logic.Models.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 

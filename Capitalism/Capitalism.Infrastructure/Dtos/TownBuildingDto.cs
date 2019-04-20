@@ -1,9 +1,8 @@
 ﻿using Capitalism.Logic.Models.Buildings;
+using Capitalism.Logic.Models.Interfaces;
 using Capitalism.SharedKernel.Model;
 using Dapper.Contrib.Extensions;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Capitalism.Infrastructure.Dtos
 {

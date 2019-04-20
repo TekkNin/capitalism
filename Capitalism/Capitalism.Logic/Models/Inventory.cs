@@ -48,12 +48,34 @@ namespace Capitalism.Logic.Models
         }
 
         /// <summary>
+        /// Sets a specific quanitity of an item regardless of old quantity
+        /// </summary>
+        /// <param name="quantity">The total quanitity of the item</param>
+        public void SetQuantity(int quantity)
+        {
+            this.Quantity = Math.Abs(quantity);
+        }
+
+        /// <summary>
         /// Increases the quantity for this particular item in the inventory. If a negative is specific the absolute value with be used.
         /// </summary>
-        /// <param name="quantity"></param>
+        /// <param name="quantity">The amount of new items</param>
         public void IncreaseQuantity(int quantity)
         {
             this.Quantity += Math.Abs(quantity);
         }
+
+        /// <summary>
+        /// Reduces the quantity for this particular item in the inventory. If a negative is specific the absolute value with be used.
+        /// </summary>
+        /// <param name="quantity">The amount of items being reduced</param>
+        public void ReduceQuantity(int quantity)
+        {
+            this.Quantity -= Math.Abs(quantity);
+
+            if (this.Quantity < 0)
+                this.Quantity = 0;
+        }
+
     }
 }

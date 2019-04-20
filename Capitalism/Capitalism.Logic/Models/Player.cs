@@ -1,11 +1,12 @@
 ﻿using Capitalism.Logic.Events;
+using Capitalism.Logic.Models.Interfaces;
 using Capitalism.SharedKernel.Events;
 using Capitalism.SharedKernel.Model;
 using System;
 
 namespace Capitalism.Logic.Models
 {
-    public class Player : WritableEntity
+    public class Player : WritableEntity, IStorable
     {
         /// <summary>
         /// The unique foreign key identifier for the account that this player belongs.
@@ -118,10 +119,11 @@ namespace Capitalism.Logic.Models
         /// Items that a player has on-hand. These items are lost upon death.
         /// </summary>
         public Inventory Inventory { get; private set; }
+        public void InitializeInventory() => this.Inventory = new Inventory();
 
         private Player() : base()
         {
-            this.Inventory = new Inventory();
+            this.InitializeInventory();
         }
 
         public Player(
@@ -246,5 +248,6 @@ namespace Capitalism.Logic.Models
             this.CurrentTown = townId;
         }
 
+        
     }
 }

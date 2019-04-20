@@ -1,4 +1,4 @@
-﻿namespace Capitalism.Logic.Models.Buildings
+﻿namespace Capitalism.Logic.Models.Interfaces
 {
     public interface IMappable
     {

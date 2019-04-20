@@ -1,12 +1,10 @@
-﻿using System;
-using Capitalism.Logic.Models;
-using Capitalism.Logic.Models.Items;
+﻿using Capitalism.Logic.Models;
 using Dapper.Contrib.Extensions;
 
 namespace Capitalism.Infrastructure.Dtos
 {
     [Table("PlayerInventory")]
-    public class InventoryItemDto
+    public class PlayerInventoryItemDto
     {
         [ExplicitKey]
         public string PlayerId { get; set; }
@@ -22,31 +20,16 @@ namespace Capitalism.Infrastructure.Dtos
         }
     }
 
-    public static class InventoryItemExtension
+    public static class PlayerInventoryItemExtension
     {
-        public static InventoryItemDto ToInventoryItemDto(this InventoryItem inventoryItem, string playerId)
+        public static PlayerInventoryItemDto ToPlayerInventoryItemDto(this InventoryItem inventoryItem, string playerId)
         {
-            return new InventoryItemDto
+            return new PlayerInventoryItemDto
             {
                 PlayerId = playerId,
                 ItemType = inventoryItem.ItemType.GetType().Name,
                 Quantity = inventoryItem.Quantity
             };
-        }
-    }
-
-    public static class InventoryItemFactory
-    {
-        public static IItemCollectable ItemFromStringType(string itemType)
-        {
-            switch (itemType)
-            {
-                case nameof(ConstuctionMaterial):
-                    return new ConstuctionMaterial();
-
-            }
-
-            return null;
         }
     }
 }

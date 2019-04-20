@@ -131,7 +131,7 @@
                 $.each(buildings, function (index, building) {
                     console.log(building);
                     itemIndex++;
-                    mapCells += '<td class="w-20"><button ' + (building.wage > 0 ? 'onclick="work(\'' + building.id + '\');"' : '') + ' class="btn w-100 ' + (building.isForSale ? 'btn-success' : '') + '"><i class="fa fa-' + building.image + '"></i> <span class="d-none d-sm-block">' + building.name + '</span></button></td>';
+                    mapCells += '<td class="w-20"><button ' + (building.wage > 0 || building.image == 'tree' ? 'onclick="work(\'' + building.id + '\');"' : '') + ' class="btn w-100 ' + (building.isForSale ? 'btn-success' : '') + '"><i class="fa fa-' + building.image + '"></i> <span class="d-none d-sm-block">' + building.name + '</span></button></td>';
                     if (itemIndex % 5 == 0) {
                         $('#map > tbody:last-child').append(
                             '<tr>' + mapCells + '</tr>'

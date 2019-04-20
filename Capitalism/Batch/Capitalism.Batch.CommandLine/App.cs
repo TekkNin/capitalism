@@ -20,17 +20,21 @@ namespace Capitalism.Batch.CommandLine
 
         public void Run()
         {
-            _logger.LogInformation($"Increase energy process executed at: {DateTime.Now}");
-
             IPlayerRepository playerRepository = new PlayerRepository(_config);
+            ITownBuildingRepository townBuildingRepository = new TownBuildingRepository(_config);
 
+            _logger.LogInformation($"Increase energy process executed at: {DateTime.Now}");            
             new IncreaseEnergyProcess(playerRepository).Execute();
+            _logger.LogInformation($"Increase energy process complete at: {DateTime.Now}");
+
+            _logger.LogInformation($"Grow trees process executed at: {DateTime.Now}");
+            new GrowTreesProcess(townBuildingRepository).Execute();
+            _logger.LogInformation($"Grow trees process complete at: {DateTime.Now}");
 
             System.Console.WriteLine("");
             System.Console.WriteLine("-----------------------------------------------");
             System.Console.WriteLine("Done! Please press any key to close the window.");
 
-            _logger.LogInformation($"Increase energy process complete at: {DateTime.Now}");
 
             //System.Console.ReadKey();
         }

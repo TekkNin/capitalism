@@ -1,4 +1,5 @@
-﻿using Capitalism.SharedKernel.Model;
+﻿using Capitalism.Logic.Models.Interfaces;
+using Capitalism.SharedKernel.Model;
 using System;
 
 namespace Capitalism.Logic.Models.Buildings

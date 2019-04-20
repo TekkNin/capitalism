@@ -76,17 +76,17 @@ namespace Capitalism.Infrastructure.Repositories
                 db.Update<PlayerDto>(player.ToPlayerDto());
 
                 // Check if the inventory has changed and update it
-                var inventoryItemDtoList = db.Query<InventoryItemDto>("SELECT * FROM [PlayerInventory] WHERE PlayerId = @PlayerId", new { PlayerId = player.Id }).ToList();
+                var inventoryItemDtoList = db.Query<PlayerInventoryItemDto>("SELECT * FROM [PlayerInventory] WHERE PlayerId = @PlayerId", new { PlayerId = player.Id }).ToList();
                 foreach (var inventoryItem in player.Inventory?.Items == null ? new List<InventoryItem>() : player.Inventory.Items)
                 {
                     if (inventoryItemDtoList.Any(x => inventoryItem.ItemType.GetType().Name == x.ItemType) &&
                         inventoryItemDtoList.First(x => inventoryItem.ItemType.GetType().Name == x.ItemType).Quantity != inventoryItem.Quantity)
                     {
-                        db.Update<InventoryItemDto>(inventoryItem.ToInventoryItemDto(player.Id));
+                        db.Update<PlayerInventoryItemDto>(inventoryItem.ToPlayerInventoryItemDto(player.Id));
                     }
                     else if (!inventoryItemDtoList.Any(x => inventoryItem.ItemType.GetType().Name == x.ItemType))
                     {
-                        db.Insert<InventoryItemDto>(inventoryItem.ToInventoryItemDto(player.Id));
+                        db.Insert<PlayerInventoryItemDto>(inventoryItem.ToPlayerInventoryItemDto(player.Id));
                     }
                 }
             }
@@ -97,7 +97,7 @@ namespace Capitalism.Infrastructure.Repositories
             if (player == null)
                 return;
 
-            var inventoryItemDtoList = db.Query<InventoryItemDto>("SELECT * FROM [PlayerInventory] WHERE PlayerId = @PlayerId", new { PlayerId = player.Id }).ToList();
+            var inventoryItemDtoList = db.Query<PlayerInventoryItemDto>("SELECT * FROM [PlayerInventory] WHERE PlayerId = @PlayerId", new { PlayerId = player.Id }).ToList();
             foreach (var inventoryItemDto in inventoryItemDtoList)
             {
                 player.Inventory.AddItem(inventoryItemDto.ToInventoryItem());

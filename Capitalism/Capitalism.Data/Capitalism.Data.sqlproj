@@ -75,6 +75,7 @@
     <Build Include="dbo\Tables\PlayerInventory.sql" />
     <Build Include="dbo\Tables\Towns.sql" />
     <Build Include="dbo\Tables\TownBuildings.sql" />
+    <Build Include="dbo\Tables\BuildingInventory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Capitalism.Data.publish.xml" />
