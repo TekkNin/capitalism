@@ -24,11 +24,5 @@ namespace Capitalism.Logic.Repositories
         /// <param name="player"></param>
         void UpdateStats(Player player);
 
-        /// <summary>
-        /// Updates the player's town and no other values
-        /// </summary>
-        /// <param name="player">The player changing towns</param>
-        /// <param name="townId">The identifier for the town the player is being located</param>
-        void UpdateTown(Player player, string townId);
     }
 }

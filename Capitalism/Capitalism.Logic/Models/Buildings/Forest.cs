@@ -18,10 +18,19 @@ namespace Capitalism.Logic.Models.Buildings
         public int XCoordinate { get; private set; }
         public int YCoordinate { get; private set; }
         public string Name => "Forest";
+        public string Image => "tree";
 
         public int TreesRemaining { get; private set; }
         public int EnergyRequirement => 10;
         public int Wage => 0;
+
+        public Forest(string id, string townId, int xCoordinate, int yCoordinate, DateTime modifiedDate, DateTime createdDate) :
+            base(id, modifiedDate, createdDate)
+        {
+            this.TownId = townId;
+            this.XCoordinate = xCoordinate;
+            this.YCoordinate = yCoordinate;
+        }
 
         public WorkResult Work(Player player)
         {

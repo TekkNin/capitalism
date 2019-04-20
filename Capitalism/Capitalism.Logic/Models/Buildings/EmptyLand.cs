@@ -1,26 +1,30 @@
 ﻿using Capitalism.SharedKernel.Model;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Capitalism.Logic.Models.Buildings
 {
     public class EmptyLand : WritableEntity, IMappable, IOwnable
     {
-        public string TownId => throw new NotImplementedException();
+        public string TownId { get; private set; }
+        public int XCoordinate { get; private set; }
+        public int YCoordinate { get; private set; }
+        public string Image => "minus";
+        public string Name { get; private set; }
+        public string OwnerId { get; private set; }
+        public bool IsForSale { get; private set; }
+        public int? Price { get; private set; }
 
-        public int XCoordinate => throw new NotImplementedException();
+        public EmptyLand(string id, string townId, int xCoordinate, int yCoordinate, string name, string ownerId, bool isForSale, int? price, DateTime modifiedDate, DateTime createdDate) :
+            base(id, modifiedDate, createdDate)
+        {
+            this.TownId = townId;
+            this.XCoordinate = xCoordinate;
+            this.YCoordinate = yCoordinate;
+            this.Name = name;
+            this.OwnerId = ownerId;
+            this.IsForSale = isForSale;
+            this.Price = price;
+        }
 
-        public int YCoordinate => throw new NotImplementedException();
-
-        public string Name => throw new NotImplementedException();
-
-        public string OwnerId => throw new NotImplementedException();
-
-        public bool IsForSale => throw new NotImplementedException();
-
-        public int Price => throw new NotImplementedException();
-
-        
     }
 }

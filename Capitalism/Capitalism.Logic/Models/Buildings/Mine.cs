@@ -15,11 +15,20 @@ namespace Capitalism.Logic.Models.Buildings
         public string TownId { get; private set; }
         public int XCoordinate { get; private set; }
         public int YCoordinate { get; private set; }
+        public string Image => "mountain";
         public string Name => "Mine";
 
         public int EnergyRequirement => 20;
         public int HappinessEffect => -5;
         public int Wage => 5;        
+
+        public Mine(string id, string townId, int xCoordinate, int yCoordinate, DateTime modifiedDate, DateTime createdDate) :
+            base(id, modifiedDate, createdDate)
+        {
+            this.TownId = townId;
+            this.XCoordinate = xCoordinate;
+            this.YCoordinate = yCoordinate;
+        }
 
         public WorkResult Work(Player player)
         {

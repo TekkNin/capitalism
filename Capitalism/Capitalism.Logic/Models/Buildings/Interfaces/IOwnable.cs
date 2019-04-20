@@ -4,6 +4,6 @@
     {
         string OwnerId { get; }
         bool IsForSale { get; }
-        int Price { get; }
+        int? Price { get; }
     }
 }

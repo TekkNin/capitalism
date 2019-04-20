@@ -89,6 +89,7 @@ namespace Capitalism.Web
 
                 config.For(typeof(IPlayerRepository)).Use(typeof(PlayerRepository));
                 config.For(typeof(ITownRepository)).Use(typeof(TownRepository));
+                config.For(typeof(ITownBuildingRepository)).Use(typeof(TownBuildingRepository));
                 config.For(typeof(IDataAccessConfiguration)).Use(new AppConfiguration(this.Configuration));
             });
         }

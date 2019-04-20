@@ -23,6 +23,11 @@
         int YCoordinate { get; }
 
         /// <summary>
+        /// The image displayed on the map for the building
+        /// </summary>
+        string Image { get; }
+
+        /// <summary>
         /// The name of the building
         /// </summary>
         string Name { get; }

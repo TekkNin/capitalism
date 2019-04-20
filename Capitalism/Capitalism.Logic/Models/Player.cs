@@ -96,7 +96,7 @@ namespace Capitalism.Logic.Models
         private int _swagger;
 
         /// <summary>
-        /// How much player the money has on hand, not in the bank.
+        /// How much money the player has on-hand. This money is lost upon death.
         /// </summary>
         public long MoneyOnHand
         {
@@ -115,7 +115,7 @@ namespace Capitalism.Logic.Models
         public Skills Skills { get; private set; }
 
         /// <summary>
-        /// Items that a player has on-hand. These items can be lost or stolen
+        /// Items that a player has on-hand. These items are lost upon death.
         /// </summary>
         public Inventory Inventory { get; private set; }
 
@@ -127,6 +127,7 @@ namespace Capitalism.Logic.Models
         public Player(
             string id,
             string userId,
+            string townId,
             string displayName,
             int health,
             int energy,
@@ -139,6 +140,7 @@ namespace Capitalism.Logic.Models
             base(id, modifiedDate, createdDate)
         {
             this.UserId = userId;
+            this.CurrentTown = townId;
             this.DisplayName = displayName;
             this.Health = health;
             this.Energy = energy;
@@ -227,12 +229,21 @@ namespace Capitalism.Logic.Models
         }
 
         /// <summary>
-        /// Increases the amount of money on hand for a player
+        /// Increases the amount of money on hand for a player.
         /// </summary>
         /// <param name="moneyEarned">A number indicating the amount of money earned. If a negative is provided the absolute value is used.</param>
         public void EarnMoney(int moneyEarned)
         {
             this.MoneyOnHand += Math.Abs(moneyEarned);
+        }
+
+        /// <summary>
+        /// Change the town that a player is currently located.
+        /// </summary>
+        /// <param name="townId">The unique foreign key identifier of the town the player is moving to.</param>
+        public void SetTown(string townId)
+        {
+            this.CurrentTown = townId;
         }
 
     }

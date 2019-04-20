@@ -31,7 +31,16 @@
         </tr>
     </table>
 
-    <div id="map" class="mt-4">
+    <div class="mt-4">
+        <table id="map" class="w-100">
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <hr class="mt-5 mb-5" />
+    <h4 class="text-center">Example Map</h4>
+
+    <div id="map2" class="mt-4">
         <table class="w-100">
             <tbody>
                 <tr>
@@ -66,8 +75,8 @@
                     <td class="w-20"><button class="btn w-100"><i class="fa fa-money-bill-alt"></i> <span class="d-none d-sm-block">For Sale</span></button></td>
                     <td class="w-20"><button class="btn w-100"><i class="fa fa-glass-martini-alt"></i> <span class="d-none d-sm-block">Bar</span></button></td>
                     <td class="w-20"><button class="btn w-100"><i class="fa fa-money-bill-alt"></i> <span class="d-none d-sm-block">For Sale</span></button></td>
-                    <td class="w-20"><button class="btn w-100"><i class="fa fa-money-bill-alt"></i> <span class="d-none d-sm-block">For Sale</span></button></td>
-                    <td class="w-20"><button class="btn w-100"><i class="fa fa-money-bill-alt"></i> <span class="d-none d-sm-block">For Sale</span></button></td>
+                    <td class="w-20 bg-success"><button class="btn w-100"><i class="fa fa-minus"></i> <span class="d-none d-sm-block">Empty Land</span></button></td>
+                    <td class="w-20"><button class="btn w-100"><i class="fa fa-minus"></i> <span class="d-none d-sm-block">Empty Land</span></button></td>
                 </tr>
                 <tr>
                     <td colspan="5" class="w-100"><button class="btn w-100"><i class="fa fa-subway"></i> <span class="d-none d-sm-block">Cityville Train Station</span></button></td>
@@ -79,7 +88,7 @@
 
 
 @section Scripts
-    {
+{
     <script type="text/javascript">
         var work = function (buildingId) {
             event.preventDefault();
@@ -114,8 +123,30 @@
             });
         }
 
+        var updateMap = function () {
+            $.get("/api/townmap", function (buildings) {
+                var itemIndex = 0;
+                var mapCells = '';
+
+                $.each(buildings, function (index, building) {
+                    console.log(building);
+                    itemIndex++;
+                    mapCells += '<td class="w-20"><button ' + (building.wage > 0 ? 'onclick="work(\'' + building.id + '\');"' : '') + ' class="btn w-100 ' + (building.isForSale ? 'btn-success' : '') + '"><i class="fa fa-' + building.image + '"></i> <span class="d-none d-sm-block">' + building.name + '</span></button></td>';
+                    if (itemIndex % 5 == 0) {
+                        $('#map > tbody:last-child').append(
+                            '<tr>' + mapCells + '</tr>'
+                        );
+                        mapCells = '';
+                    }
+                });
+
+
+            });
+        }
+
         $(document).ready(function () {
             updateStats();
+            updateMap();
         });
 
         window.setInterval(function () {

@@ -10,6 +10,7 @@ namespace Capitalism.Infrastructure.Dtos
         [ExplicitKey]
         public string Id { get; set; }
         public string UserId { get; set; }
+        public string TownId { get; set; }
         public string DisplayName { get; set; }
         public int Health { get; set; }
         public int Energy { get; set; }
@@ -28,7 +29,8 @@ namespace Capitalism.Infrastructure.Dtos
             return new Player(
                 this.Id,
                 this.UserId,
-                this.DisplayName,
+                this.TownId,
+                this.DisplayName,                
                 this.Health,
                 this.Energy,
                 this.Happiness,
@@ -48,6 +50,7 @@ namespace Capitalism.Infrastructure.Dtos
             {
                 Id = player.Id,
                 UserId = player.UserId,
+                TownId = player.CurrentTown,
                 DisplayName = player.DisplayName,
                 Health = player.Health,
                 Energy = player.Energy,

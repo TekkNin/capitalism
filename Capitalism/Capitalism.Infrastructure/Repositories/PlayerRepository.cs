@@ -91,15 +91,7 @@ namespace Capitalism.Infrastructure.Repositories
                 }
             }
         }
-
-        public void UpdateTown(Player player, string townId)
-        {
-            using (IDbConnection db = new SqlConnection(_configuration.ConnectionString))
-            {
-                db.ExecuteScalar("UPDATE [Players] SET [TownId] = @TownId WHERE [Id] = @PlayerId", new { TownId = townId, PlayerId = player.Id });
-            }
-        }
-
+        
         private static void PopulateInventory(IDbConnection db, Player player)
         {
             if (player == null)
