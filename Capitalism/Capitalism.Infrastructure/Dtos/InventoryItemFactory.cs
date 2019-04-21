@@ -8,8 +8,8 @@ namespace Capitalism.Infrastructure.Dtos
         {
             switch (itemType)
             {
-                case nameof(ConstuctionMaterial):
-                    return new ConstuctionMaterial();
+                case nameof(BasicBuildingMaterial):
+                    return new BasicBuildingMaterial();
 
             }
 

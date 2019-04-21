@@ -51,7 +51,7 @@ namespace Capitalism.Logic.Models.Buildings
             player.ReduceEnergy(this.EnergyRequirement);
             player.EarnMoney(this.Wage);
 
-            player.Inventory.AddItem(1, new ConstuctionMaterial());
+            player.Inventory.AddItem(1, new BasicBuildingMaterial());
             ReduceTreeCount();
 
             CheckForInjury(player, workResult);
@@ -71,7 +71,7 @@ namespace Capitalism.Logic.Models.Buildings
             if (this.Inventory?.Items == null || this.Inventory.Items.Count() == 0)
             {
                 this.Inventory = new Inventory();
-                this.Inventory.AddItem(0, new ConstuctionMaterial());
+                this.Inventory.AddItem(0, new BasicBuildingMaterial());
             }
 
             this.Inventory.Items.First().IncreaseQuantity(additionalTreesQuantity);
@@ -85,7 +85,7 @@ namespace Capitalism.Logic.Models.Buildings
             if (this.Inventory?.Items == null || this.Inventory.Items.Count() == 0)
             {
                 this.Inventory = new Inventory();
-                this.Inventory.AddItem(0, new ConstuctionMaterial());
+                this.Inventory.AddItem(0, new BasicBuildingMaterial());
             }
 
             this.Inventory.Items.First().ReduceQuantity(1);

@@ -4,32 +4,7 @@
 }
 
 <div class="container">
-    <div class="row">
-        <div class="col-sm-4">
-            <strong>Health:</strong>
-            <div class="progress">
-                <div id="playerHealthBar" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <strong>Energy:</strong>
-            <div class="progress">
-                <div id="playerEnergyBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <strong>Happiness:</strong>
-            <div class="progress">
-                <div id="playerHappinessBar" class="progress-bar bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-        </div>
-    </div>
-    <table class="col-12">
-        <tr>
-            <td><strong>Money:</strong> $<span id="playerMoney">0</span></td>
-            <td class="text-right"><strong>Swagger:</strong> <span id="playerSwagger">0</span></td>
-        </tr>
-    </table>
+    <partial name="_PlayerStatsPartial" />
 
     <div class="mt-4">
         <table id="map" class="w-100">
@@ -89,6 +64,7 @@
 
 @section Scripts
 {
+    <script src="~/js/gameplay.js"></script>
     <script type="text/javascript">
         var work = function (buildingId) {
             event.preventDefault();
@@ -109,19 +85,6 @@
                 }
             });
         };
-
-        var updateStats = function () {
-            $.get("/api/playerstats", function (stats) {
-                $('#playerHealthBar').html(stats.health + "%");
-                $('#playerHealthBar').attr('aria-valuenow', stats.health).css('width', stats.health + "%");
-                $('#playerEnergyBar').html(stats.energy + "%");
-                $('#playerEnergyBar').attr('aria-valuenow', stats.energy).css('width', stats.energy + "%");
-                $('#playerHappinessBar').html(stats.happiness + "%");
-                $('#playerHappinessBar').attr('aria-valuenow', stats.happiness).css('width', stats.happiness + "%");
-                $("#playerSwagger").html(stats.swagger);
-                $("#playerMoney").html(stats.moneyOnHand);
-            });
-        }
 
         var updateMap = function () {
             $.get("/api/townmap", function (buildings) {
@@ -149,8 +112,5 @@
             updateMap();
         });
 
-        window.setInterval(function () {
-            updateStats();
-        }, 30000);
     </script>
 }

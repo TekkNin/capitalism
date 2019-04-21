@@ -2,5 +2,6 @@
 {
     public interface IItemCollectable
     {
+        string Name { get; }
     }
 }

@@ -9,6 +9,7 @@ namespace Capitalism.Web.Controllers
     [Authorize]
     public class PlayController : Controller
     {
+        [Route("play")]
         public IActionResult Index()
         {
             var player = ObjectFactory.Container.GetInstance<GetPlayerService>().GetByUserId(User.Identity.GetId());

@@ -1,0 +1,29 @@
+﻿<div class="row">
+    <div class="col-sm-4">
+        <strong>Health:</strong>
+        <div class="progress">
+            <div id="playerHealthBar" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <strong>Energy:</strong>
+        <div class="progress">
+            <div id="playerEnergyBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <strong>Happiness:</strong>
+        <div class="progress">
+            <div id="playerHappinessBar" class="progress-bar bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+    </div>
+</div>
+<table class="col-12">
+    <tr>
+        <td>
+            <strong>Money:</strong> $<span id="playerMoney">0</span><br />
+            [<a asp-controller="inventory" asp-action="index">View Inventory</a>]
+        </td>
+        <td class="text-right"><strong>Swagger:</strong> <span id="playerSwagger">0</span></td>
+    </tr>
+</table>
