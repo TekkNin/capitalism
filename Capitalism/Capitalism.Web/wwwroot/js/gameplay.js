@@ -11,6 +11,27 @@
     });
 };
 
+toastr.options.closeButton = true;
+var displayActionResults = function (results) {
+    $.each(results, function (index, result) {
+        if (result.hasMessage) {
+            switch (result.resultType) {
+                case 1:     // Info
+                    toastr.info(result.message);
+                    break;
+                case 2:     // Success
+                    toastr.success(result.message);
+                    break;
+                case 3:     // Warning
+                    toastr.warning(result.message);
+                    break;
+                case 4:     // Error
+                    toastr.error(result.message);
+                    break;
+            }
+        }
+    });
+}
 window.setInterval(function () {
     updateStats();
 }, 30000);

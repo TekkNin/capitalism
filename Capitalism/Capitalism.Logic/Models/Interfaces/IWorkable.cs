@@ -19,7 +19,7 @@ namespace Capitalism.Logic.Models.Interfaces
         /// </summary>
         /// <param name="player">The player performing the work</param>
         /// <returns>The results of whether the work was successfully performed and any reasons why it wasn't</returns>
-        WorkResult Work(Player player);
+        ActionResults Work(Player player);
     }
 
     

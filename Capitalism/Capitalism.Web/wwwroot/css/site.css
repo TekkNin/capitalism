@@ -56,3 +56,8 @@ body {
 }
 
 .w-20 { width: 20% !important; }
+#toast-container > .toast-success { background-image: none !important;}
+#toast-container > .toast-info { background-image: none !important;}
+#toast-container > .toast-warning { background-image: none !important;}
+#toast-container > .toast-error { background-image: none !important;}
+#toast-container > div{ padding-left: 15px; }

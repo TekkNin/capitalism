@@ -38,28 +38,28 @@ namespace Capitalism.Logic.Models.Buildings
             this.Inventory = new Inventory();
         }
 
-        public WorkResult Work(Player player)
+        public ActionResults Work(Player player)
         {
             if (!player.IsAlive)
-                return WorkResult.Failed("You're dead.");
+                return ActionResults.Failed("You're dead.");
             if (this.Inventory?.Items?.FirstOrDefault()?.Quantity == 0)
-                return WorkResult.Failed("All the mature trees are gone. Wait for them to grow.");
+                return ActionResults.Failed("All the mature trees are gone. Wait for them to grow.");
             if (player.Energy < this.EnergyRequirement)
-                return WorkResult.Failed("You don't have enough energy to work in the forest.");
+                return ActionResults.Failed("You don't have enough energy to work in the forest.");
 
-            var workResult = WorkResult.Success;
+            var workResults = ActionResults.Success("You gather some wood in the forest.");
             player.ReduceEnergy(this.EnergyRequirement);
             player.EarnMoney(this.Wage);
 
             player.Inventory.AddItem(1, new BasicBuildingMaterial());
             ReduceTreeCount();
 
-            CheckForInjury(player, workResult);
+            CheckForInjury(player, workResults);
 
             DomainEvents.Raise(new PlayerWorkedEvent(player, this));
             DomainEvents.Raise(new ForestWorkedEvent(this));
 
-            return workResult;
+            return workResults;
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Capitalism.Logic.Models.Buildings
             this.Inventory.Items.First().ReduceQuantity(1);
         }
 
-        private void CheckForInjury(Player player, WorkResult workResult)
+        private void CheckForInjury(Player player, ActionResults workResults)
         {
             var injuryRoll = new Random().Next(1, 100);
 
@@ -99,7 +99,7 @@ namespace Capitalism.Logic.Models.Buildings
             if (injuryRoll <= 1)
             {
                 player.ReduceHealth(5);
-                workResult.AddMessage("You had a minor injury in the forest.");
+                workResults.AddResult(ActionResult.Warning("You had a minor injury in the forest."));
             }
             // 95% chance of no injury
             else

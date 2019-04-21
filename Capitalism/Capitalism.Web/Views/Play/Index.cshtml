@@ -7,7 +7,7 @@
     <partial name="_PlayerStatsPartial" />
 
     <div class="mt-4">
-        <table id="map" class="w-100">
+        <table id="map" class="w-100" style="border-collapse: separate; border-spacing: 1px; ">
             <tbody></tbody>
         </table>
     </div>
@@ -63,7 +63,7 @@
 
 
 @section Scripts
-{
+    {
     <script src="~/js/gameplay.js"></script>
     <script type="text/javascript">
         var work = function (buildingId) {
@@ -77,10 +77,8 @@
                     buildingId: buildingId,
                 }),
                 dataType: 'json',
-                success: function (data) {
-                    if (!data.succeeded) {
-                        alert(data.messages[0]);
-                    }
+                success: function (results) {
+                    displayActionResults(results);
                     updateStats();
                 }
             });
@@ -94,7 +92,7 @@
                 $.each(buildings, function (index, building) {
                     console.log(building);
                     itemIndex++;
-                    mapCells += '<td class="w-20"><button ' + (building.wage > 0 || building.image == 'tree' ? 'onclick="work(\'' + building.id + '\');"' : '') + ' class="btn w-100 ' + (building.isForSale ? 'btn-success' : '') + '"><i class="fa fa-' + building.image + '"></i> <span class="d-none d-sm-block">' + building.name + '</span></button></td>';
+                    mapCells += '<td class="w-20 ' + (building.isForSale ? 'bg-success' : '') + '"><button ' + (building.wage > 0 || building.image == 'tree' ? 'onclick="work(\'' + building.id + '\');"' : '') + ' class="btn w-100"><i class="fa fa-' + building.image + '"></i> <span class="d-none d-sm-block">' + building.name + '</span></button></td>';
                     if (itemIndex % 5 == 0) {
                         $('#map > tbody:last-child').append(
                             '<tr>' + mapCells + '</tr>'
@@ -102,8 +100,6 @@
                         mapCells = '';
                     }
                 });
-
-
             });
         }
 

@@ -19,9 +19,9 @@ namespace Capitalism.Web.Api.Controllers
             var player = ObjectFactory.Container.GetInstance<GetPlayerService>().GetByUserId(User.Identity.GetId());
             var building = ObjectFactory.Container.GetInstance<GetBuildingService>().GetBuildingByTownIdBuildingId(player.CurrentTown, model.BuildingId);
 
-            var workResult = ((IWorkable)building).Work(player);
+            var workResults = ((IWorkable)building).Work(player);
 
-            return Ok(workResult);
+            return Ok(workResults);
         }
 
     }

@@ -19,7 +19,7 @@ namespace Capitalism.Logic.Models.Buildings
         public bool IsForSale { get; private set; }
         public int? Price { get; private set; }
         
-        public WorkResult Work(Player player)
+        public ActionResults Work(Player player)
         {
             throw new NotImplementedException();
         }
