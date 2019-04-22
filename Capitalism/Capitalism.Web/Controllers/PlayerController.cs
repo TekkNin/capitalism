@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Capitalism.Web.Extensions;
-using Capitalism.Web.Models.PlayerViewModels;
+using Capitalism.Web.Models;
 using Capitalism.Logic.Models;
 
 namespace Capitalism.Web.Controllers

@@ -66,22 +66,10 @@
     {
     <script src="~/js/gameplay.js"></script>
     <script type="text/javascript">
-        var work = function (buildingId) {
+        var buildingAction = function (buildingId) {
             event.preventDefault();
 
-            $.ajax({
-                url: '/api/work',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    buildingId: buildingId,
-                }),
-                dataType: 'json',
-                success: function (results) {
-                    displayActionResults(results);
-                    updateStats();
-                }
-            });
+            window.location.href = '/play/building/' + buildingId;
         };
 
         var updateMap = function () {
@@ -92,7 +80,7 @@
                 $.each(buildings, function (index, building) {
                     console.log(building);
                     itemIndex++;
-                    mapCells += '<td class="w-20 ' + (building.isForSale ? 'bg-success' : '') + '"><button ' + (building.wage > 0 || building.image == 'tree' ? 'onclick="work(\'' + building.id + '\');"' : '') + ' class="btn w-100"><i class="fa fa-' + building.image + '"></i> <span class="d-none d-sm-block">' + building.name + '</span></button></td>';
+                    mapCells += '<td class="w-20 ' + (building.isForSale ? 'bg-success' : '') + '"><button onclick="buildingAction(\'' + building.id + '\');" class="btn w-100"><i class="fa fa-' + building.image + '"></i> <span class="d-none d-sm-block">' + building.name + '</span></button></td>';
                     if (itemIndex % 5 == 0) {
                         $('#map > tbody:last-child').append(
                             '<tr>' + mapCells + '</tr>'

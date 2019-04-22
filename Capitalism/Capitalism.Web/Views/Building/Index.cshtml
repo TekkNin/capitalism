@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Capitalism Game";
+}
+
+<div class="container">
+    <partial name="_PlayerStatsPartial" />
+
+    <a asp-controller="play" asp-action="index" class="btn btn-outline-primary btn-sm float-right mt-4 mb-1"><i class="fa fa-arrow-left"></i> Back to Town</a>
+
+    <div style="clear:both;">
+        @Html.DisplayFor(m => m)
+    </div>
+</div>
+
+
+@section Scripts
+    {
+    <script src="~/js/gameplay.js"></script>
+    <script type="text/javascript">
+        
+
+        $(document).ready(function () {
+            updateStats();
+        });
+
+    </script>
+}

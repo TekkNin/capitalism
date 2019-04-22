@@ -1,0 +1,66 @@
+﻿@model Capitalism.Logic.Models.Buildings.TownHall
+
+<h4>Welcome to Town Hall</h4>
+
+<div class="mt-3">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="policies-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Policies</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="finacials-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Financials</a>
+        </li>
+    </ul>
+    <div class="tab-content border-right border-left border-bottom p-3" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="form-group row">
+                <label for="population" class="col-sm-2 col-form-label">Population:</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="population" value="1">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="pollution" class="col-sm-2 col-form-label">Pollution:</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="pollution" value="0">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="electionDay" class="col-sm-2 col-form-label">Next Election Day:</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="electionDay" value="TBD">
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="policies-tab">
+            Coming soon...
+        </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="finacials-tab">
+            <div class="form-group row">
+                <label for="accountBalance" class="col-sm-2 col-form-label">Account Balance:</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="accountBalance" value="$0">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        updateTownHall('@Model.Id');
+    });
+
+    var updateTownHall = function (buildingId) {
+        $.get("/api/building/townhall/" + buildingId, function (building) {
+            $('#population').val(building.population);
+            $('#pollution').val(building.pollutionLevel);
+            $('#accountBalance').val('$' + numberWithCommas(building.accountBalance));
+        });
+    }
+</script>

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Capitalism.Web.Models.PlayerViewModels
+namespace Capitalism.Web.Models
 {
     public class PlayerCreateViewModel
     {

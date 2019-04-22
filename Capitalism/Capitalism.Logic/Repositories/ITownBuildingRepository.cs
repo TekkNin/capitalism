@@ -1,5 +1,4 @@
-﻿using Capitalism.Logic.Models.Buildings;
-using Capitalism.Logic.Models.Interfaces;
+﻿using Capitalism.Logic.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 

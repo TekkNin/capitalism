@@ -30,6 +30,8 @@ namespace Capitalism.Infrastructure.Dtos
         {
             switch (this.BuildingType)
             {
+                case nameof(TownHall):
+                    return new TownHall(this.Id, this.TownId, this.XCoordinate, this.YCoordinate, this.ModifiedDate, this.CreatedDate);
                 case nameof(Mine):
                     return new Mine(this.Id, this.TownId, this.XCoordinate, this.YCoordinate, this.ModifiedDate, this.CreatedDate);
                 case nameof(Forest):

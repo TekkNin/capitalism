@@ -28,13 +28,11 @@
 
         var updateInventory = function () {
             $.get("/api/playerinventory", function (items) {
-                console.log(items.items);
                 $.each(items, function (index, item) {
-                    console.log(item);
                     $('#inventory > tbody:last-child').append(
                         '<tr>' +
                         '<td>' + item.name + '</td>' +
-                        '<td>' + item.quantity + '</td>' +
+                        '<td>' + numberWithCommas(item.quantity) + '</td>' +
                         '<td></td>' +
                         '</tr>'
                     );

@@ -180,74 +180,56 @@ namespace Capitalism.Logic.Models
         /// Increases the players health points, max 100.
         /// </summary>
         /// <param name="healthPoints">A number indicating the number of health points to increase. If a negative is provided the absolute value is used.</param>
-        public void AddHealth(int healthPoints)
-        {
-            this.Health += Math.Abs(healthPoints);
-        }
+        public void AddHealth(int healthPoints) => this.Health += Math.Abs(healthPoints);
 
         /// <summary>
         /// Reduces the players health points down, min 0.
         /// </summary>
         /// <param name="healthPoints">A number indicating the number of health points to decrease. If a negative is provided the absolute value is used.</param>
-        public void ReduceHealth(int healthPoints)
-        {
-            this.Health -= Math.Abs(healthPoints);
-        }
+        public void ReduceHealth(int healthPoints) => this.Health -= Math.Abs(healthPoints);
 
         /// <summary>
         /// Increases the player's energy, max 100.
         /// </summary>
         /// <param name="energyPoints">A number indicating the amount of energy to increase. If a negative is provided the absolute value is used.</param>
-        public void AddEnergy(int energyPoints)
-        {
-            this.Energy += Math.Abs(energyPoints);
-        }
+        public void AddEnergy(int energyPoints) => this.Energy += Math.Abs(energyPoints);
 
         /// <summary>
         /// Reduces the player's energy down, min 0.
         /// </summary>
         /// <param name="energyPoints">A number indicating the amount of energy to decrease. If a negative is provided the absolute value is used.</param>
-        public void ReduceEnergy(int energyPoints)
-        {
-            this.Energy -= Math.Abs(energyPoints);
-        }
+        public void ReduceEnergy(int energyPoints) => this.Energy -= Math.Abs(energyPoints);
 
         /// <summary>
         /// Increases the player's happiness, max 100.
         /// </summary>
         /// <param name="happinessPoints">A number indicating the amount of happiness to increase. If a negative is provided the absolute value is used.</param>
-        public void AddHappiness(int happinessPoints)
-        {
-            this.Happiness += Math.Abs(happinessPoints);
-        }
+        public void AddHappiness(int happinessPoints) => this.Happiness += Math.Abs(happinessPoints);
 
         /// <summary>
         /// Reduces the player's energy down, min 0.
         /// </summary>
         /// <param name="happinessPoints">A number indicating the amount of happiness to decrease. If a negative is provided the absolute value is used.</param>
-        public void ReduceHappiness(int happinessPoints)
-        {
-            this.Happiness -= Math.Abs(happinessPoints); ;
-        }
+        public void ReduceHappiness(int happinessPoints) => this.Happiness -= Math.Abs(happinessPoints);
 
         /// <summary>
         /// Increases the amount of money on hand for a player.
         /// </summary>
         /// <param name="moneyEarned">A number indicating the amount of money earned. If a negative is provided the absolute value is used.</param>
-        public void EarnMoney(int moneyEarned)
-        {
-            this.MoneyOnHand += Math.Abs(moneyEarned);
-        }
+        public void EarnMoney(int moneyEarned) => this.MoneyOnHand += Math.Abs(moneyEarned);
+
+        /// <summary>
+        /// Increases the amount of money on hand for a player.
+        /// </summary>
+        /// <param name="moneySpent">A number indicating the amount of money spent. If a negative is provided the absolute value is used.</param>
+        public void SpendMoney(int moneySpent) => this.MoneyOnHand -= Math.Abs(moneySpent);
 
         /// <summary>
         /// Change the town that a player is currently located.
         /// </summary>
         /// <param name="townId">The unique foreign key identifier of the town the player is moving to.</param>
-        public void SetTown(string townId)
-        {
-            this.CurrentTown = townId;
-        }
+        public void SetTown(string townId) => this.CurrentTown = townId;
 
-        
+
     }
 }

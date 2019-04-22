@@ -11,6 +11,7 @@ namespace Capitalism.Infrastructure.Dtos
         public string Id { get; set; }
         public string Name { get; set; }
         public int Population { get; set; }
+        public long AccountBalance { get; set; }
         public int PollutionLevel { get; set; }
         public DateTime ModifiedDate { get; set; }
         public DateTime CreatedDate { get; set; }
@@ -21,6 +22,7 @@ namespace Capitalism.Infrastructure.Dtos
                 this.Id,
                 this.Name,
                 this.Population,
+                this.AccountBalance,
                 this.PollutionLevel,
                 this.ModifiedDate,
                 this.CreatedDate);
@@ -36,6 +38,7 @@ namespace Capitalism.Infrastructure.Dtos
                 Id = town.Id,
                 Name = town.Name,
                 Population = town.Population,
+                AccountBalance = town.AccountBalance,
                 PollutionLevel = town.PollutionLevel,
                 ModifiedDate = town.ModifiedDate,
                 CreatedDate = town.CreatedDate

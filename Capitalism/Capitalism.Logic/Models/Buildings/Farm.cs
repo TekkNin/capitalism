@@ -18,10 +18,18 @@ namespace Capitalism.Logic.Models.Buildings
         public string OwnerId { get; private set; }
         public bool IsForSale { get; private set; }
         public int? Price { get; private set; }
-        
+
+        public void SetOwner(string playerId) => this.OwnerId = playerId;
+
+        public ActionResults Purchase(Player purchasingPlayer)
+        {
+            throw new NotImplementedException();
+        }        
+
         public ActionResults Work(Player player)
         {
             throw new NotImplementedException();
         }
+
     }
 }
