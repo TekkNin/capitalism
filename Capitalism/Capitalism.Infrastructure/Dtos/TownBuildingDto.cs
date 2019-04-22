@@ -38,6 +38,8 @@ namespace Capitalism.Infrastructure.Dtos
                     return new Forest(this.Id, this.TownId, this.XCoordinate, this.YCoordinate, this.ModifiedDate, this.CreatedDate);
                 case nameof(EmptyLand):
                     return new EmptyLand(this.Id, this.TownId, this.XCoordinate, this.YCoordinate, this.Name, this.OwnerId, (bool)this.IsForSale, this.Price, this.ModifiedDate, this.CreatedDate);
+                case nameof(Farm):
+                    return new Farm(this.Id, this.TownId, this.XCoordinate, this.YCoordinate, this.Name, this.OwnerId, (bool)this.IsForSale, this.Price, this.ModifiedDate, this.CreatedDate);
             }
 
             return null;

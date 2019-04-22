@@ -17,22 +17,33 @@ namespace Capitalism.Logic.Models
             this.Items = new List<InventoryItem>();
         }
 
-        public void AddItem<TItemCollectable>(int quantity, TItemCollectable item) where TItemCollectable :IItemCollectable
+        public void AddItem<TItemCollectable>(int quantity, TItemCollectable item) where TItemCollectable : IItemCollectable
         {
-            if (!this.Items.Any(x => x.ItemType.GetType() == typeof(TItemCollectable)))
-            {
-                var inventoryItem = new InventoryItem(quantity, item);
-                ((List<InventoryItem>)this.Items).Add(inventoryItem);
-            }
-            else
-            {
-                this.Items.First(x => x.ItemType.GetType() == typeof(TItemCollectable)).IncreaseQuantity(quantity);
-            }
+            var inventoryItem = new InventoryItem(quantity, item);
+            AddItem(inventoryItem);
         }
 
         public void AddItem(InventoryItem inventoryItem)
         {
-            ((List<InventoryItem>)this.Items).Add(inventoryItem);
+            if (this.Items.Any(x => x.ItemType.GetType() == inventoryItem.ItemType.GetType()))
+            {
+                Items.First(x => x.ItemType.GetType() == inventoryItem.ItemType.GetType()).IncreaseQuantity(inventoryItem.Quantity);
+            }
+            else
+            {
+                ((List<InventoryItem>)this.Items).Add(inventoryItem);
+            }
+        }
+
+        public void RemoveItems<TItemCollectable>(int quantity, TItemCollectable item) where TItemCollectable : IItemCollectable
+        {
+            var inventoryItem = new InventoryItem(quantity, item);
+            RemoveItems(inventoryItem);
+        }
+
+        public void RemoveItems(InventoryItem inventoryItem)
+        {
+            Items.First(x => x.ItemType.GetType() == inventoryItem.ItemType.GetType()).ReduceQuantity(inventoryItem.Quantity);
         }
     }
 

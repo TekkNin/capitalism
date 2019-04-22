@@ -25,7 +25,12 @@
                     <tr>
                         <td>Shack</td>
                         <td></td>
-                        <td class="text-right"><button class="btn btn-small">Build</button></td>
+                        <td class="text-right"><button class="btn">Build</button></td>
+                    </tr>
+                    <tr>
+                        <td>Farm</td>
+                        <td>20 Basic Building Materials</td>
+                        <td class="text-right"><button class="btn" onclick="buildFarm('@Model.Id');">Build</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -57,6 +62,27 @@
                 $('#isOwner').show();
             } else {
                 $('#isOwner').hide();
+            }
+        });
+    }
+
+    var buildFarm = function (buildingId) {
+        event.preventDefault();
+
+        $.ajax({
+            url: '/api/build/farm',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                buildingId: buildingId,
+            }),
+            dataType: 'json',
+            success: function (results) {
+                displayActionResults(results);
+                updateStats();
+                if (results[0].resultType < 4) {
+                    location.reload();
+                }
             }
         });
     }

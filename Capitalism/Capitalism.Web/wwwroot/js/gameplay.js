@@ -1,4 +1,4 @@
-﻿var updateStats = function () {
+﻿var updateStats = function (callback) {
     $.get("/api/playerstats", function (stats) {
         $('#playerId').val(stats.id);
         $('#playerHealthBar').html(stats.health + "%");
@@ -9,6 +9,8 @@
         $('#playerHappinessBar').attr('aria-valuenow', stats.happiness).css('width', stats.happiness + "%");
         $("#playerSwagger").html(numberWithCommas(stats.swagger));
         $("#playerMoney").html(numberWithCommas(stats.moneyOnHand));
+
+        if (callback) { callback(); }
     });
 };
 

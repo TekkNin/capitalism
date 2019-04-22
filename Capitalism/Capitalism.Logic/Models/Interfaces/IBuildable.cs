@@ -1,4 +1,6 @@
-﻿using Capitalism.Logic.Models.Items;
+﻿using Capitalism.Logic.Models.Buildings;
+using Capitalism.Logic.Models.Items;
+using Capitalism.Logic.Types;
 using System.Collections.Generic;
 
 namespace Capitalism.Logic.Models.Interfaces
@@ -8,9 +10,14 @@ namespace Capitalism.Logic.Models.Interfaces
         /// <summary>
         /// The materials required by the player to construct the building
         /// </summary>
-        IEnumerable<IItemCollectable> BuildMaterials { get; }
+        IEnumerable<InventoryItem> BuildMaterials { get; }
 
-        // TODO: Define build
-        void Build(Player player);
+        /// <summary>
+        /// Builds a new building type on empty land
+        /// </summary>
+        /// <param name="emptyLand">The land being built on</param>
+        /// <param name="player">The player who owns the land and is building the new building</param>
+        /// <returns>Whether constuction was successful or not and the reason why</returns>
+        ActionResults Build(EmptyLand emptyLand, Player player);
     }
 }

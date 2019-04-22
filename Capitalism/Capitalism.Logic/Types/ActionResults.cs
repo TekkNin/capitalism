@@ -6,9 +6,11 @@ namespace Capitalism.Logic.Types
 {
     public class ActionResults : IEnumerable<ActionResult>
     {
-        private IList<ActionResult> _actionResults = new List<ActionResult>();        
+        private IList<ActionResult> _actionResults = new List<ActionResult>();
+        public bool HasResults => _actionResults.Count > 0;
 
-        public ActionResults(ActionResult actionResult)
+        private ActionResults() { }
+        private ActionResults(ActionResult actionResult)
         {
             _actionResults.Add(actionResult);
         }
@@ -18,6 +20,7 @@ namespace Capitalism.Logic.Types
             _actionResults.Add(actionResult);
         }
 
+        public static ActionResults Empty => new ActionResults();
         public static ActionResults Success(string message = null) => new ActionResults(ActionResult.Success(message));
         public static ActionResults Failed(string message) => new ActionResults(ActionResult.Failed(message));
 
