@@ -17,7 +17,43 @@
     {
     <script src="~/js/gameplay.js"></script>
     <script type="text/javascript">
-        
+        var work = function (buildingId, callback) {
+            event.preventDefault();
+
+            $.ajax({
+                url: '/api/work',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    buildingId: buildingId,
+                }),
+                dataType: 'json',
+                success: function (results) {
+                    displayActionResults(results);
+                    updateStats();
+                    if (callback) { callback(buildingId); }
+                }
+            });
+        };
+
+        var buyBuilding = function (buildingId, callback) {
+            event.preventDefault();
+
+            $.ajax({
+                url: '/api/buybuilding',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    buildingId: buildingId,
+                }),
+                dataType: 'json',
+                success: function (results) {
+                    displayActionResults(results);
+                    updateStats();
+                    if (callback) { callback(buildingId); }
+                }
+            });
+        };
 
         $(document).ready(function () {
             updateStats();

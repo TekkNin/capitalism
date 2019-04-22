@@ -37,8 +37,8 @@ namespace Capitalism.Logic.Handlers
             }
             
             domainEvent.PurchasingPlayer.SpendMoney((int)domainEvent.Building.Price);
-            domainEvent.Building.SetOwner(domainEvent.PurchasingPlayer.Id);
-            
+            domainEvent.Building.ChangeOwnership(domainEvent.PurchasingPlayer.Id);
+
             _playerRepository.UpdateStats(domainEvent.PurchasingPlayer);
             _townBuildingRepository.Update(domainEvent.Building);
         }

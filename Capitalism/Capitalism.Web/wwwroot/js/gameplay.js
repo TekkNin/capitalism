@@ -1,5 +1,6 @@
 ﻿var updateStats = function () {
     $.get("/api/playerstats", function (stats) {
+        $('#playerId').val(stats.id);
         $('#playerHealthBar').html(stats.health + "%");
         $('#playerHealthBar').attr('aria-valuenow', stats.health).css('width', stats.health + "%");
         $('#playerEnergyBar').html(stats.energy + "%");

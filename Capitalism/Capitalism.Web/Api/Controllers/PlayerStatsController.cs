@@ -18,6 +18,7 @@ namespace Capitalism.Web.Api.Controllers
             var player = ObjectFactory.Container.GetInstance<GetPlayerService>().GetByUserId(User.Identity.GetId());
             var model = new PlayerStatsGetModel
             {
+                Id  = player.Id,
                 Health = player.Health,
                 Energy = player.Energy,
                 Happiness = player.Happiness,

@@ -76,11 +76,11 @@
             $.get("/api/townmap", function (buildings) {
                 var itemIndex = 0;
                 var mapCells = '';
+                var playerId = $('#playerId').val();
 
                 $.each(buildings, function (index, building) {
-                    console.log(building);
                     itemIndex++;
-                    mapCells += '<td class="w-20 ' + (building.isForSale ? 'bg-success' : '') + '"><button onclick="buildingAction(\'' + building.id + '\');" class="btn w-100"><i class="fa fa-' + building.image + '"></i> <span class="d-none d-sm-block">' + building.name + '</span></button></td>';
+                    mapCells += '<td class="w-20 ' + (building.isForSale ? 'bg-success' : '') + '"><button onclick="buildingAction(\'' + building.id + '\');" class="btn w-100 ' + (building.ownerId == playerId ? 'btn-secondary' : '') + '"><i class="fa fa-' + building.image + '"></i> <span class="d-none d-sm-block">' + building.name + '</span></button></td>';
                     if (itemIndex % 5 == 0) {
                         $('#map > tbody:last-child').append(
                             '<tr>' + mapCells + '</tr>'

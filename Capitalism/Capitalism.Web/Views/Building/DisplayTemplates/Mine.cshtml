@@ -6,27 +6,11 @@
     <div class="tab-content border p-3">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <p>It's tough work in the mines, and they only pay you $5 per shift.</p>
-            <button class="btn btn-dark" onclick="work('@Model.Id')">Work</button>
+
+            <hr />
+            <div class="w-100">
+                <button class="btn btn-dark" onclick="work('@Model.Id')">Work</button>
+            </div>
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-    var work = function (buildingId) {
-        event.preventDefault();
-
-        $.ajax({
-            url: '/api/work',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                buildingId: buildingId,
-            }),
-            dataType: 'json',
-            success: function (results) {
-                displayActionResults(results);
-                updateStats();
-            }
-        });
-    };
-</script>

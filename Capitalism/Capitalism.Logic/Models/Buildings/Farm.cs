@@ -19,7 +19,13 @@ namespace Capitalism.Logic.Models.Buildings
         public bool IsForSale { get; private set; }
         public int? Price { get; private set; }
 
-        public void SetOwner(string playerId) => this.OwnerId = playerId;
+        public void ChangeOwnership(string playerId)
+        {
+            this.OwnerId = playerId;
+            this.IsForSale = false;
+            this.Price = null;
+            this.SetModifiedDate();
+        }
 
         public ActionResults Purchase(Player purchasingPlayer)
         {

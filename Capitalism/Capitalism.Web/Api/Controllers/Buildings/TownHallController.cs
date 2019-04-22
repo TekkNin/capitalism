@@ -9,7 +9,7 @@ namespace Capitalism.Web.Api.Controllers.Buildings
 {
     [Authorize]
     [ApiController]
-    public class TownHallController : Controller
+    public class TownHallController : ControllerBase
     {
         [HttpGet]
         [Route("api/building/townhall/{id}")]

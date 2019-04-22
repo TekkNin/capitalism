@@ -27,9 +27,9 @@ namespace Capitalism.Logic.Models.Interfaces
         ActionResults Purchase(Player purchasingPlayer);
 
         /// <summary>
-        /// Sets the ownerId of the building
+        /// Sets the ownerId of the building and ensures that the land is no longer for sale
         /// </summary>
         /// <param name="playerId">The player id of the new owner</param>
-        void SetOwner(string playerId);
+        void ChangeOwnership(string playerId);
     }
 }
